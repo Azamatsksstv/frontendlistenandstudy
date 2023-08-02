@@ -1,0 +1,35 @@
+.course-list-container {
+  height: calc(100vh - 100px); /* Высота контейнера за вычетом высоты шапки */
+  overflow-y: auto; /* Включаем вертикальную прокрутку при необходимости */
+  padding: 20px;
+}
+
+
+.course-item {
+  font-weight: lighter;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  font-size: 28px;
+  background-color: black;
+  border-radius: 50px;
+  color: whitesmoke;
+  text-decoration: none;
+}
+.course-item:hover {
+  color: white;
+  /*font-size: ;*/
+  background-color: #1e2e75; /* Изменяем цвет при наведении */
+}
+
+
+h2{
+  text-decoration: none;
+  font-weight: lighter;
+  color: white;
+  font-size: 32px;
+  padding-left: 150px;
+}

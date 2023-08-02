@@ -1,0 +1,57 @@
+header {
+  background-color: #0b0e1c;
+  padding: 10px;
+
+}
+body{
+  background-color: #1d2126;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: lighter;
+  font-size: 26px;
+}
+
+nav a:hover {
+  color: #ff5722; /* Измените цвет при наведении на ссылку */
+}
+
+
+.background-image {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* 100% высоты видимой области экрана */
+  overflow: hidden; /* Затемняем изображение */
+}
+
+.background-image img {
+  width: 100%;
+  /*background-color: black;*/
+  height: 100%;
+  object-fit: cover; /* Растягиваем изображение, чтобы оно заполнило всю доступную область */
+  opacity: 0.85; /* Устанавливаем прозрачность изображения */
+}
+
+.welcome-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /*opacity: 0.8;*/
+  transform: translate(-50%, -50%); /* Чтобы текст был посередине */
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Добавляем тень тексту */
+}

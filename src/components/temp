@@ -1,0 +1,66 @@
+import React, { useState } from 'react';
+import './LoginPage.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import { Link } from "react-router-dom";
+
+const RegisterPage = () => {
+  const [message, setMessage] = useState(null);
+
+  const handleRegister = async (event) => {
+    event.preventDefault();
+    // Ваш код для обработки отправки формы регистрации и запроса к бэкенду
+    try {
+      // Отправка запроса к бэкенду для регистрации пользователя
+      // Важно, чтобы сервер возвращал правильный статус (200) в случае успешной регистрации
+      // и статус с ошибкой (400) в случае неверных данных
+      const response = await fetch('http://127.0.0.1:8000/api/v1/accounts/register/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({/* Ваши данные для регистрации */}),
+      });
+
+      const data = await response.json();
+
+      // Обработка ответа от сервера
+      if (response.status === 200) {
+        // Успешная регистрация
+        setMessage('Registration successfully, please check your email.');
+      } else {
+        // Ошибка при регистрации
+        setMessage('Something went wrong. Please check your data and try again.');
+      }
+    } catch (error) {
+      console.error('Error registering:', error);
+      setMessage('Something went wrong. Please try again later.');
+    }
+  };
+
+  return (
+    <div>
+        <div className="container">
+            <div className="wrapper">
+                <div className="title"><span>Registration</span></div>
+                <form onSubmit={handleRegister}>
+                    <div className="row">
+                        <i className="fas fa-user"></i>
+                        <input type="text" placeholder="Email or Phone" required/>
+                    </div>
+                    <div className="row">
+                        <i className="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" required/>
+                    </div>
+                    <div className="row button">
+                        <input type="submit" value="Register"/>
+                    </div>
+                    <div className="signup-link">Already have an account? <Link to="/login">Sign in now</Link></div>
+                </form>
+            </div>
+        </div>
+        {message && <div className="notification">{message}</div>}
+    </div>
+  );
+};
+
+export default RegisterPage;

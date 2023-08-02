@@ -1,0 +1,8 @@
+.probootstrap-section{
+    background-color: #673dee;
+    color: white;
+    height: 400px;
+    justify-content: center;
+    display: flex;
+    font-size: 38px;
+}
