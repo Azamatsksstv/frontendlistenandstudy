@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {Link} from "react-router-dom";
 
 const MyProfile = () => {
   const [userInfo, setUserInfo] = useState({});
@@ -35,6 +36,11 @@ const MyProfile = () => {
       <p style={styles.description}>Last Name: {userInfo.last_name}</p>
       <p style={styles.description}>User type: {userInfo.user_type}</p>
         <div style={styles.buttonContainer}>
+          <Link to="/myprofile/edit">
+            <button style={styles.editButton}>
+              Edit
+            </button>
+          </Link>
         <button onClick={handleLogout} style={styles.logoutButton}>
           Logout
         </button>
@@ -74,6 +80,16 @@ const styles = {
     fontSize: '16px',
     fontWeight: 'bold',
     cursor: 'pointer',
+  },
+   editButton: {
+    padding: '10px 20px',
+    backgroundColor: '#a07916',
+    color: '#fff',
+    borderRadius: '5px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+     marginRight: '10px',
   },
 };
 

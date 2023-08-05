@@ -23,6 +23,8 @@ import CreateCourse from "./components/admin/CreateCourse";
 import CoursesForAdmin from "./components/admin/CoursesForAdmin";
 import CourseDetailsForAdmin from "./components/admin/CourseDetailsForAdmin";
 import ChangeCourse from "./components/admin/ChangeCourse";
+import ChangeProfile from "./components/ChangeProfile";
+import Comments from "./components/Comments";
 
 const App = () => {
   return (
@@ -53,11 +55,15 @@ const App = () => {
 
             <Route path="/myprofile" element={<MyProfile />} />
 
+            <Route path="/myprofile/edit" element={<ChangeProfile />} />
+
+            <Route path="/comments" element={<Comments/>}/>
 
             <Route path="/courses-admin" element={<CoursesForAdmin />} />
             <Route path="/courses-admin/create" element={<CreateCourse />} />
             <Route path="/courses-admin/:courseId" element={<CourseDetailsForAdmin />}/>
             <Route path="/courses-admin/:courseId/change" element={<ChangeCourse />}/>
+
 
 
             <Route path="/verify" element={<VerifyPage />} />
