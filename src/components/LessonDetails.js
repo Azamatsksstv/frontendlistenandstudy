@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Comments from './Comments'; // Импортируйте компонент Comments из вашего файла
 
 const LessonDetails = () => {
   const { courseId, lessonId } = useParams(); // Получите courseId и lessonId из URL с помощью хука useParams
@@ -39,6 +40,7 @@ const LessonDetails = () => {
         <source src={`http://127.0.0.1:8000${lesson.audio}`} type="audio/mpeg" />
         Ваш браузер не поддерживает аудио.
       </audio>
+      <Comments comments={lesson.comments} />
       </div>
     );
 };
