@@ -10,7 +10,11 @@ const CourseList = () => {
     // Функция для получения списка курсов с Django backend
     const fetchCourses = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/v1/dashboard/courses/');
+        const response = await axios.get('http://127.0.0.1:8000/api/v1/dashboard/courses/', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Передаем токен в хедере для аутентификации
+          },
+        });
         setCourses(response.data);
       } catch (error) {
         console.error('Error fetching courses:', error);

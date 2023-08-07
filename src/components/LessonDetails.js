@@ -15,7 +15,11 @@ const LessonDetails = () => {
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 
-        const response = await axios.get(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/`);
+        const response = await axios.get(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Передаем токен в хедере для аутентификации
+          },
+        });
         setLesson(response.data);
       } catch (error) {
         console.error('Error fetching lesson:', error);

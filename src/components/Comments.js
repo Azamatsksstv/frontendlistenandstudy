@@ -16,6 +16,10 @@ const Comment = ({ comment }) => {
       const response = await axios.post(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/comments/`, {
         content: replyContent,
         parent: comment.id, // Указываем родительский комментарий
+      }, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Передаем токен в хедере для аутентификации
+          },
       });
       // Обновляем состояние, чтобы показать новый ответ
       // Скрываем форму ответа после успешной отправки

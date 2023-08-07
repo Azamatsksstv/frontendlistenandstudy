@@ -10,7 +10,11 @@ const LessonsOfCourseForTeacher = () => {
   useEffect(() => {
     const fetchLessons = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/`);
+        const response = await axios.get(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Передаем токен в хедере для аутентификации
+          },
+        });
         setLessons(response.data.lessons);
       } catch (error) {
         console.error('Error fetching lessons:', error);

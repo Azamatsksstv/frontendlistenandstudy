@@ -10,7 +10,11 @@ const CourseDetails = () => {
   useEffect(() => {
     const fetchCourseDetails = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/`);
+        const response = await axios.get(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Передаем токен в хедере для аутентификации
+          },
+        });
         setCourse(response.data);
       } catch (error) {
         console.error('Error fetching course details:', error);
