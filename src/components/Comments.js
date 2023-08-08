@@ -14,7 +14,7 @@ const Comment = ({ comment }) => {
   };
   const handleReplySubmit = async () => {
     try {
-      const response = await axios.post(`http://52.87.238.183/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/comments/`, {
+      const response = await axios.post(`${BASE_URL}/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/comments/`, {
         content: replyContent,
         parent: comment.id, // Указываем родительский комментарий
       }, {
