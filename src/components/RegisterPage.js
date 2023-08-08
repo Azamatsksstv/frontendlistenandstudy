@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {Link, useNavigate} from 'react-router-dom';
+import BASE_URL from "./config";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ const RegisterPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/v1/accounts/register/', {
+      const response = await axios.post(`${BASE_URL}/api/v1/accounts/register/`, {
         email: email,
         password: password,
       });

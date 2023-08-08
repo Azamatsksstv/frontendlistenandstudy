@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
 import './Comments.css';
+import BASE_URL from "./config";
 
 const Comment = ({ comment }) => {
   const { courseId, lessonId } = useParams(); // Получите courseId и lessonId из URL с помощью хука useParams
@@ -13,7 +14,7 @@ const Comment = ({ comment }) => {
   };
   const handleReplySubmit = async () => {
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/comments/`, {
+      const response = await axios.post(`http://52.87.238.183/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/comments/`, {
         content: replyContent,
         parent: comment.id, // Указываем родительский комментарий
       }, {
@@ -74,7 +75,7 @@ const Comments = () => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/comments`);
+        const response = await axios.get(`${BASE_URL}/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/comments`);
         setComments(response.data);
       } catch (error) {
         console.error('Error fetching comments:', error);
@@ -90,7 +91,7 @@ const Comments = () => {
 
   const handleCommentSubmit = async () => {
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/comments/`, {
+      const response = await axios.post(`${BASE_URL}/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/comments/`, {
         content: newComment,
       });
       setComments([...comments, response.data]);

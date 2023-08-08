@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CourseListStyle from './CourseListStyle.css'
 import {Link} from "react-router-dom";
+import BASE_URL from "./config";
 
 const CourseList = () => {
   const [courses, setCourses] = useState([]);
@@ -10,7 +11,7 @@ const CourseList = () => {
     // Функция для получения списка курсов с Django backend
     const fetchCourses = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/v1/dashboard/courses/', {
+        const response = await axios.get(`${BASE_URL}/api/v1/dashboard/courses/`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Передаем токен в хедере для аутентификации
           },

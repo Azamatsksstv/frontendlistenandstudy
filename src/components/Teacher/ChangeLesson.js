@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import BASE_URL from "../config";
 
 const ChangeLesson = () => {
   const { courseId, lessonId } = useParams();
@@ -18,7 +19,7 @@ const ChangeLesson = () => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/`
+          `${BASE_URL}/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/`
         );
         setLessonData(response.data);
       } catch (error) {
@@ -53,7 +54,7 @@ const ChangeLesson = () => {
       formData.append('audio', lessonData.audio);
 
       await axios.put(
-        `http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/change/`,
+        `${BASE_URL}/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/change/`,
         formData,
         {
           headers: {

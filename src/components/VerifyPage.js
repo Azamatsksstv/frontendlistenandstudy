@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './VerifyPage.css';
 import { useNavigate } from 'react-router-dom';
+import BASE_URL from "./config";
 
 
 const RegisterPage = () => {
@@ -16,7 +17,7 @@ const RegisterPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/v1/accounts/verify/', {
+      const response = await axios.post(`${BASE_URL}/api/v1/accounts/verify/`, {
         email: email,
         otp: otp,
       });

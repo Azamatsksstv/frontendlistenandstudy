@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import BASE_URL from "../config";
 
 const CreateLessonPage = ({ history }) => {
   const { courseId } = useParams(); // Извлекаем courseId из параметров маршрута
@@ -32,7 +33,7 @@ const CreateLessonPage = ({ history }) => {
       formData.append('audio', lessonData.audio);
 
       const response = await axios.post(
-        `http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/create/`,
+        `${BASE_URL}/api/v1/dashboard/courses/${courseId}/lessons/create/`,
         formData,
         {
           headers: {

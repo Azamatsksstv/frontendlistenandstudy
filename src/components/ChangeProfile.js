@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Link} from "react-router-dom";
+import BASE_URL from "./config";
 
 const ChangeProfile = () => {
   const [userInfo, setUserInfo] = useState({
@@ -15,7 +16,7 @@ const ChangeProfile = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/v1/my_profile/', {
+        const response = await axios.get(`${BASE_URL}/api/v1/my_profile/`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Передаем токен в хедере для аутентификации
           },
@@ -41,7 +42,7 @@ const ChangeProfile = () => {
       formData.append('last_name', userInfo.last_name);
 
       await axios.put(
-        `http://127.0.0.1:8000/api/v1/my_profile/`,
+        `${BASE_URL}/api/v1/my_profile/`,
         formData,
         {
           headers: {

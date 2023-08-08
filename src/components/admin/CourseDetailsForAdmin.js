@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Link, useParams} from 'react-router-dom';
 import {Button} from "react-bootstrap";
+import BASE_URL from "../config";
 
 const CourseDetails = () => {
   const { courseId } = useParams();
@@ -10,7 +11,11 @@ const CourseDetails = () => {
   useEffect(() => {
     const fetchCourseDetails = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/`);
+        const response = await axios.get(`${BASE_URL}/api/v1/dashboard/courses/${courseId}/`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Передаем токен в хедере для аутентификации
+          },
+        });
         setCourse(response.data);
       } catch (error) {
         console.error('Error fetching course details:', error);
@@ -27,7 +32,7 @@ const CourseDetails = () => {
 
       // Send the delete request to the specified URL
       await axios.delete(
-        `http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/delete/`
+        `${BASE_URL}/api/v1/dashboard/courses/${courseId}/delete/`
       );
 
       // Handle the successful deletion (e.g., redirect to another page or show a success message)

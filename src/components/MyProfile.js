@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Link} from "react-router-dom";
+import BASE_URL from "./config";
 
 const MyProfile = () => {
   const [userInfo, setUserInfo] = useState({});
@@ -8,7 +9,7 @@ const MyProfile = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/v1/my_profile/', {
+        const response = await axios.get(`${BASE_URL}/api/v1/my_profile/`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Передаем токен в хедере для аутентификации
           },

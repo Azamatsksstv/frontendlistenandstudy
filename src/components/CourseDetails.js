@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Link, useParams} from 'react-router-dom';
 import {Button} from "react-bootstrap";
+import BASE_URL from "./config";
 
 const CourseDetails = () => {
   const { courseId } = useParams();
@@ -10,7 +11,7 @@ const CourseDetails = () => {
   useEffect(() => {
     const fetchCourseDetails = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/`, {
+        const response = await axios.get(`${BASE_URL}/api/v1/dashboard/courses/${courseId}/`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Передаем токен в хедере для аутентификации
           },
@@ -42,7 +43,7 @@ const CourseDetails = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-      await axios.post(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/join/`, {}, config);
+      await axios.post(`${BASE_URL}/api/v1/dashboard/courses/${courseId}/join/`, {}, config);
       alert('Successfully joined the course!');
     } catch (error) {
       alert('Error joining the course');

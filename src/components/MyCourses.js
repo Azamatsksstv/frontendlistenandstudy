@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Button} from "react-bootstrap";
 import CourseListStyle from './CourseListStyle.css'
 import {Link} from "react-router-dom";
+import BASE_URL from "./config";
 
 const MyCourses = () => {
   const [courses, setCourses] = useState([]);
@@ -16,7 +17,7 @@ const MyCourses = () => {
         // Устанавливаем токен в хедеры запроса
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-        const response = await axios.get('http://127.0.0.1:8000/api/v1/my_courses/student/', {
+        const response = await axios.get(`${BASE_URL}/api/v1/my_courses/student/`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Передаем токен в хедере для аутентификации
           },

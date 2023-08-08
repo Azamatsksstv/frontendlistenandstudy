@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import BASE_URL from "../config";
 
 const CreateCourse = ({ history }) => {
   const { courseId } = useParams(); // Извлекаем courseId из параметров маршрута
@@ -20,8 +21,12 @@ const CreateCourse = ({ history }) => {
 
         // Загружаем список пользователей-учителей из базы данных
         const teachersResponse = await axios.get(
-          'http://127.0.0.1:8000/api/v1/teachers/' // Замените на URL вашего API для получения списка учителей
-        );
+          `${BASE_URL}/api/v1/teachers/` // Замените на URL вашего API для получения списка учителей
+        , {
+            headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Передаем токен в хедере для аутентификации
+          },
+            });
         setTeachers(teachersResponse.data);
       } catch (error) {
         console.error('Error fetching lesson:', error);
@@ -47,7 +52,7 @@ const CreateCourse = ({ history }) => {
       formData.append('teacher', courseData.teacher);
 
       const response = await axios.post(
-        `http://127.0.0.1:8000/api/v1/dashboard/courses/create/`,
+        `${BASE_URL}/api/v1/dashboard/courses/create/`,
         formData,
         {
           headers: {

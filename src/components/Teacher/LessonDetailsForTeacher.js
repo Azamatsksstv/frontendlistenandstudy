@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import BASE_URL from "../config";
 
 const LessonDetailsForTeacher = () => {
   const { courseId, lessonId } = useParams();
@@ -14,7 +15,7 @@ const LessonDetailsForTeacher = () => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/`
+          `${BASE_URL}/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/`
         );
         setLesson(response.data);
       } catch (error) {
@@ -32,7 +33,7 @@ const LessonDetailsForTeacher = () => {
 
       // Send the delete request to the specified URL
       await axios.delete(
-        `http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/delete/`
+        `${BASE_URL}/api/v1/dashboard/courses/${courseId}/lessons/${lessonId}/delete/`
       );
 
       // Handle the successful deletion (e.g., redirect to another page or show a success message)
@@ -64,7 +65,7 @@ const LessonDetailsForTeacher = () => {
       {/* Здесь вы можете отображать другие данные урока */}
       <audio controls>
         {/* Укажите URL аудиофайла */}
-        <source src={`http://127.0.0.1:8000${lesson.audio}`} type="audio/mpeg" />
+        <source src={`${BASE_URL}${lesson.audio}`} type="audio/mpeg" />
         Ваш браузер не поддерживает аудио.
       </audio>
       <div style={styles.buttonContainer}>

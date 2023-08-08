@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom'; // Импортируем компонент Link
+import { useParams, Link } from 'react-router-dom';
+import BASE_URL from "./config"; // Импортируем компонент Link
 
 const LessonsOfCourse = () => {
   const { courseId } = useParams();
@@ -9,7 +10,7 @@ const LessonsOfCourse = () => {
   useEffect(() => {
     const fetchLessons = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/v1/dashboard/courses/${courseId}/lessons/`, {
+        const response = await axios.get(`${BASE_URL}/api/v1/dashboard/courses/${courseId}/lessons/`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Передаем токен в хедере для аутентификации
           },

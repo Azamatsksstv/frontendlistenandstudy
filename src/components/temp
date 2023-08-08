@@ -13,7 +13,7 @@ const RegisterPage = () => {
       // Отправка запроса к бэкенду для регистрации пользователя
       // Важно, чтобы сервер возвращал правильный статус (200) в случае успешной регистрации
       // и статус с ошибкой (400) в случае неверных данных
-      const response = await fetch('http://127.0.0.1:8000/api/v1/accounts/register/', {
+      const response = await fetch('/api/v1/accounts/register/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

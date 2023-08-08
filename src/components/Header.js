@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import axios from "axios";
+import BASE_URL from "./config";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -13,7 +14,7 @@ const Header = () => {
   useEffect(() => {
     const checkTokenValidity = async () => {
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/v1/accounts/token/verify/', {
+        const response = await axios.post(`${BASE_URL}/api/v1/accounts/token/verify/`, {
           token: token,
         });
 
