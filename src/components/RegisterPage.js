@@ -30,7 +30,7 @@ const RegisterPage = () => {
         if (response.data.data && response.data.data.email && response.data.data.email.length > 0) {
           setErrorMessage(response.data.data.email[0])
       }
-
+        setErrorMessage(response.data.data.password[0])
       } else {
       }
     } catch (error) {
